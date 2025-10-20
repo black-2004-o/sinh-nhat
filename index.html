@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chúc mừng sinh nhật 20-11</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #ffe6f2, #fff0f5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    h1 {
+      color: #ff1493;
+      font-size: 2.8em;
+      text-shadow: 2px 2px #fff;
+      margin-top: 30px;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    .cake {
+      position: relative;
+      width: 180px;
+      height: 110px;
+      background: #ff80aa;
+      border-radius: 10px;
+      box-shadow: 0 5px 0 #cc3366;
+      margin-top: 40px;
+    }
+
+    .candle {
+      position: absolute;
+      top: -45px;
+      left: 85px;
+      width: 12px;
+      height: 45px;
+      background: #fff;
+      border-radius: 5px;
+    }
+
+    .flame {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle, #ff0, #ff6600);
+      border-radius: 50%;
+      animation: flicker 0.3s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); opacity: 1; }
+      to { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
+    }
+
+    .character {
+      position: relative;
+      margin-top: 40px;
+      width: 160px;
+      height: 200px;
+    }
+
+    .face {
+      width: 120px;
+      height: 120px;
+      background: #ffe0bd;
+      border-radius: 50%;
+      margin: auto;
+      position: relative;
+    }
+
+    .hair {
+      position: absolute;
+      top: -10px;
+      left: 0;
+      width: 120px;
+      height: 80px;
+      background: #8b4513;
+      border-radius: 60px 60px 30px 30px;
+      z-index: -1;
+    }
+
+    .eye {
+      width: 12px;
+      height: 12px;
+      background: #000;
+      border-radius: 50%;
+      position: absolute;
+      top: 45px;
+      animation: blink 3s infinite;
+    }
+    .eye.left { left: 35px; }
+    .eye.right { right: 35px; }
+
+    @keyframes blink {
+      0%, 90%, 100% { height: 12px; }
+      95% { height: 3px; }
+    }
+
+    .mouth {
+      position: absolute;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 35px;
+      height: 20px;
+      background: #e94e77;
+      border-radius: 0 0 50% 50%;
+    }
+
+    .message {
+      margin-top: 50px;
+      color: #ff4081;
+      font-size: 1.3em;
+      text-align: center;
+      width: 80%;
+      line-height: 1.6;
+      animation: fadein 3s;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .floating {
+      position: absolute;
+      bottom: 0;
+      animation: floatUp 6s infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
+      100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fireworks"></canvas>
+
+  <h1>🎉 Chúc Mừng Sinh Nhật 20/11 🎂</h1>
+
+  <div class="cake">
+    <div class="candle">
+      <div class="flame"></div>
+    </div>
+  </div>
+
+  <div class="character">
+    <div class="face">
+      <div class="hair"></div>
+      <div class="eye left"></div>
+      <div class="eye right"></div>
+      <div class="mouth"></div>
+    </div>
+  </div>
+
+  <div class="message">
+    💖 <b>Nguyễn Thị Kim Ngân</b> thân mến 💖<br><br>
+    Chúc bạn có một ngày sinh nhật thật trọn vẹn và ngọt ngào như chính nụ cười của bạn 🌸.<br><br>
+    Mong rằng từng giây phút hôm nay sẽ đều ngập tràn tiếng cười, niềm vui và những điều đáng yêu nhất trên thế giới này 💕.<br><br>
+    Cảm ơn bạn vì đã luôn là một người tuyệt vời – dễ thương, ấm áp và truyền năng lượng tích cực cho mọi người xung quanh 🌷.<br><br>
+    Hy vọng tuổi mới sẽ mang đến cho <b>Ngân</b> thật nhiều điều tốt đẹp: học tập thuận lợi, sức khỏe dồi dào và luôn được yêu thương như hôm nay 🥰.<br><br>
+    Hãy cười thật tươi, vì hôm nay là ngày dành riêng cho bạn đó! 🎁🎂💐
+  </div>
+
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_78a85dbd7a.mp3?filename=happy-birthday-116841.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Pháo hoa
+    const canvas = document.getElementById('fireworks');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const fireworks = [];
+
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.radius = Math.random() * 3 + 1;
+        this.color = color;
+        this.speedX = Math.random() * 4 - 2;
+        this.speedY = Math.random() * 4 - 2;
+        this.life = 100;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.life--;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    function createFirework(x, y) {
+      const colors = ['#ff4081', '#ffd700', '#00e676', '#00b0ff'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      for (let i = 0; i < 30; i++) {
+        fireworks.push(new Particle(x, y, color));
+      }
+    }
+
+    function animate() {
+      ctx.fillStyle = 'rgba(0,0,0,0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      for (let i = fireworks.length - 1; i >= 0; i--) {
+        fireworks[i].update();
+        fireworks[i].draw();
+        if (fireworks[i].life <= 0) fireworks.splice(i, 1);
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    setInterval(() => createFirework(Math.random() * canvas.width, Math.random() * canvas.height / 2), 700);
+
+    // Hiệu ứng trái tim & hoa bay
+    const emojis = ["💖", "🌸", "💐", "🌷", "💕"];
+    function createFloating() {
+      const el = document.createElement("div");
+      el.classList.add("floating");
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.animationDuration = (4 + Math.random() * 3) + "s";
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 7000);
+    }
+    setInterval(createFloating, 500);
+  </script>
+</body>
+</html>
