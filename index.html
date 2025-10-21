@@ -3,11 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>🎂 Happy Birthday Ngân 💖</title>
-<link rel="icon" href="OIP.jpeg" type="image/png">
-<meta name="title" content="🎂 Happy Birthday Ngân 💖">
-<meta name="description" content="Một món quà sinh nhật nhỏ dành tặng cô gái xinh đẹp nhất — Nguyễn Thị Kim Ngân 🌸">
-
+<title>Chúc mừng sinh nhật 🎂</title>
 <style>
 body {
   margin: 0;
@@ -40,27 +36,29 @@ body {
   animation: popIn 1.5s ease;
 }
 
-/* 🎂 Ảnh bánh kem */
+/* 🎂 Ảnh bánh kem to và đẹp hơn */
 #banner img {
-  width: 350px;
+  width: 320px;
   height: auto;
   border-radius: 50% / 35%;
-  box-shadow: 0 0 40px rgba(255,255,255,0.9), 0 0 25px rgba(255,182,193,0.9);
+  box-shadow: 0 0 40px rgba(255,255,255,0.9), 0 0 20px rgba(255,192,203,0.8);
   margin-bottom: 25px;
   animation: cakePop 1.5s ease;
-  transition: transform 0.6s ease;
+  transform: scale(1);
+  transition: transform 0.8s ease;
 }
-#banner img:hover { transform: scale(1.08); }
-
+#banner img:hover {
+  transform: scale(1.08);
+}
 @keyframes cakePop {
-  0% { transform: scale(0.4); opacity: 0; }
+  0% { transform: scale(0.3); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
 
 #banner h1 {
   font-size: 30px;
   color: #ff1493;
-  text-shadow: 2px 2px 4px #fff;
+  text-shadow: 1px 1px 2px #fff;
   font-weight: bold;
   animation: fadeIn 2s ease;
 }
@@ -125,7 +123,7 @@ h2 {
   text-align: center;
   color: white;
   overflow: hidden;
-  animation: fadeIn 1s ease;
+  animation: fadeIn 1.5s ease;
 }
 .imageSlide img {
   max-width: 90%;
@@ -138,10 +136,11 @@ h2 {
   font-size: 20px;
   margin-top: 20px;
   text-shadow: 0 0 10px #ff69b4;
-  animation: fadeIn 1.5s ease;
+  animation: fadeIn 2s ease;
 }
+
 @keyframes fadeIn {
-  from { opacity: 0; }
+  from { opacity: 0; } 
   to { opacity: 1; }
 }
 
@@ -201,15 +200,14 @@ canvas {
   <button onclick="endSlides()">🎂 Kết thúc 💖</button>
 </div>
 
-<!-- Nhạc nền -->
-<audio id="bgMusic" src="happy-birthday.mp3" loop></audio>
-
 <script>
+// ====== Kiểm tra mật khẩu ======
 const nextBtn = document.getElementById("nextBtn");
 const passwordInput = document.getElementById("password");
 const loginDiv = document.getElementById("login");
 const mainDiv = document.getElementById("main");
 const errorMsg = document.getElementById("error");
+
 const CORRECT_PASS = "123456789Hieu";
 
 nextBtn.addEventListener("click", checkPass);
@@ -221,14 +219,13 @@ function checkPass(){
     loginDiv.style.display = "none";
     mainDiv.style.display = "block";
     startFireworks();
-    document.getElementById("bgMusic").play().catch(()=>{}); // bật nhạc
   } else {
     errorMsg.style.display = "block";
     setTimeout(()=> errorMsg.style.display = "none", 1500);
   }
 }
 
-// ====== Next sang slide đầu tiên ======
+// ====== Next sang hình ảnh đầu tiên ======
 document.getElementById("nextImageBtn").addEventListener("click", ()=>{
   mainDiv.style.display = "none";
   document.getElementById("slide1").style.display = "block";
@@ -239,6 +236,7 @@ function nextSlide(num){
   document.querySelectorAll(".imageSlide").forEach(s => s.style.display="none");
   document.getElementById(`slide${num}`).style.display = "block";
 }
+
 function endSlides(){
   document.querySelectorAll(".imageSlide").forEach(s => s.style.display="none");
   alert("🎉 Hết rồi nè! Chúc Ngân luôn xinh đẹp, vui tươi và thật hạnh phúc 💕");
@@ -272,6 +270,7 @@ function startFireworks(){
       ctx.globalAlpha=1;
     }
   }
+
   function createFirework(){
     const x=Math.random()*canvas.width;
     const y=Math.random()*canvas.height/2;
@@ -279,6 +278,7 @@ function startFireworks(){
     const color=colors[Math.floor(Math.random()*colors.length)];
     for(let i=0;i<50;i++) particles.push(new Particle(x,y,color));
   }
+
   function animate(){
     ctx.fillStyle="rgba(0,0,0,0.15)";
     ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -289,6 +289,7 @@ function startFireworks(){
     }
     requestAnimationFrame(animate);
   }
+
   setInterval(createFirework,700);
   animate();
 }
