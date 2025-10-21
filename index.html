@@ -28,12 +28,32 @@ body {
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-#login h1 {
+#banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+  animation: popIn 1s ease;
+}
+#banner img {
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255,255,255,0.6);
+  margin-bottom: 10px;
+}
+@keyframes popIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+#banner h1 {
   font-size: 28px;
   color: #ff1493;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px #fff;
+  text-shadow: 1px 1px 2px #fff;
+  font-weight: bold;
 }
+
 #password {
   padding: 10px 14px;
   border: 2px solid #ff1493;
@@ -43,7 +63,7 @@ body {
   width: 220px;
   text-align: center;
 }
-#nextBtn, #nextImageBtn {
+#nextBtn, #nextImageBtn, #finalNextBtn {
   margin-top: 16px;
   background: #ff1493;
   border: none;
@@ -54,7 +74,8 @@ body {
   cursor: pointer;
   transition: 0.3s;
 }
-#nextBtn:hover, #nextImageBtn:hover { background: #ff69b4; }
+#nextBtn:hover, #nextImageBtn:hover, #finalNextBtn:hover { background: #ff69b4; }
+
 #error {
   color: red;
   margin-top: 10px;
@@ -98,15 +119,23 @@ h2 {
   background: #000;
   text-align: center;
   overflow: hidden;
+  color: white;
 }
 #imagePage img {
   max-width: 90%;
-  max-height: 90%;
+  max-height: 75vh;
   margin-top: 5vh;
   border-radius: 16px;
   box-shadow: 0 0 30px rgba(255,255,255,0.4);
   animation: fadeIn 1.5s ease;
 }
+#caption {
+  font-size: 20px;
+  margin-top: 20px;
+  text-shadow: 0 0 10px #ff69b4;
+  animation: fadeIn 2s ease;
+}
+
 canvas {
   position: fixed;
   top: 0;
@@ -120,7 +149,10 @@ canvas {
 
 <!-- Màn đăng nhập -->
 <div id="login">
-  <h1>🔒 Nhập mật khẩu để mở quà 🎁</h1>
+  <div id="banner">
+    <img src="OIP.jpeg" alt="Bánh kem sinh nhật">
+    <h1>🎉 Chúc Mừng Sinh Nhật Nguyễn Thị Kim Ngân 🎂</h1>
+  </div>
   <input type="password" id="password" placeholder="Nhập mật khẩu...">
   <button id="nextBtn">Next ➜</button>
   <div id="error">Sai mật khẩu rồi nha 🥺</div>
@@ -141,7 +173,11 @@ canvas {
 
 <!-- Trang hình ảnh -->
 <div id="imagePage">
-  <img src="c3593d7f-d636-47f7-9fab-88940a6810b0.png" alt="Hình ảnh sinh nhật">
+  <img src="480591280_1340868617092435_5708492407284149770_n.jpg" alt="Hình ảnh sinh nhật">
+  <p id="caption">
+    🌷 Cô gái trong hình thật dễ thương, ánh mắt hiền lành và nụ cười khiến ai cũng phải mỉm cười 💖
+  </p>
+  <button id="finalNextBtn">Next ➜</button>
 </div>
 
 <script>
@@ -177,6 +213,11 @@ function checkPass(){
 document.getElementById("nextImageBtn").addEventListener("click", ()=>{
   mainDiv.style.display = "none";
   imageDiv.style.display = "block";
+});
+
+// ====== Nút Next cuối cùng ======
+document.getElementById("finalNextBtn").addEventListener("click", ()=>{
+  alert("🎂 Cảm ơn bạn đã xem đến đây! Chúc bạn luôn xinh đẹp, vui vẻ và hạnh phúc nhé 💖");
 });
 
 // ====== Hiệu ứng pháo hoa ======
