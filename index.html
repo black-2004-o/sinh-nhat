@@ -3,6 +3,303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🎂 Happy Birthday Ngân 💖</title>
+<link rel="icon" href="OIP.jpeg" type="image/png">
+<meta name="title" content="🎂 Happy Birthday Ngân 💖">
+<meta name="description" content="Một món quà sinh nhật nhỏ dành tặng cô gái xinh đẹp nhất — Nguyễn Thị Kim Ngân 🌸">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #ffe6f2, #fff0f5);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* --- Màn đăng nhập --- */
+#login {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ffe6f2);
+  text-align: center;
+  z-index: 10;
+  animation: fadeIn 1s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+#banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+  animation: popIn 1.5s ease;
+}
+
+/* 🎂 Ảnh bánh kem */
+#banner img {
+  width: 350px;
+  height: auto;
+  border-radius: 50% / 35%;
+  box-shadow: 0 0 40px rgba(255,255,255,0.9), 0 0 25px rgba(255,182,193,0.9);
+  margin-bottom: 25px;
+  animation: cakePop 1.5s ease;
+  transition: transform 0.6s ease;
+}
+#banner img:hover { transform: scale(1.08); }
+
+@keyframes cakePop {
+  0% { transform: scale(0.4); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+#banner h1 {
+  font-size: 30px;
+  color: #ff1493;
+  text-shadow: 2px 2px 4px #fff;
+  font-weight: bold;
+  animation: fadeIn 2s ease;
+}
+
+#password {
+  padding: 10px 14px;
+  border: 2px solid #ff1493;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  width: 240px;
+  text-align: center;
+}
+button {
+  margin-top: 16px;
+  background: #ff1493;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover { background: #ff69b4; }
+
+#error {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+  display: none;
+}
+
+/* --- Trang lời chúc --- */
+#main {
+  display: none;
+  text-align: center;
+  padding: 20px;
+  color: #4a2033;
+}
+h2 {
+  color: #ff1493;
+  font-size: 30px;
+  text-shadow: 2px 2px #fff;
+}
+.message {
+  background: rgba(255,255,255,0.7);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- Slide hình ảnh --- */
+.imageSlide {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  animation: fadeIn 1s ease;
+}
+.imageSlide img {
+  max-width: 90%;
+  max-height: 75vh;
+  margin-top: 5vh;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(255,255,255,0.4);
+}
+.caption {
+  font-size: 20px;
+  margin-top: 20px;
+  text-shadow: 0 0 10px #ff69b4;
+  animation: fadeIn 1.5s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<!-- Màn đăng nhập -->
+<div id="login">
+  <div id="banner">
+    <img src="OIP.jpeg" alt="Bánh kem sinh nhật">
+    <h1>🎉 Chúc Mừng Sinh Nhật Nguyễn Thị Kim Ngân 🎂</h1>
+  </div>
+  <input type="password" id="password" placeholder="Nhập mật khẩu...">
+  <button id="nextBtn">Next ➜</button>
+  <div id="error">Sai mật khẩu rồi nha 🥺</div>
+</div>
+
+<!-- Trang lời chúc -->
+<canvas id="fireworks"></canvas>
+<div id="main">
+  <h2>🎉 Chúc Mừng Sinh Nhật Nguyễn Thị Kim Ngân 🎂</h2>
+  <div class="message">
+    💖 Chúc bạn có một ngày sinh nhật thật ngọt ngào và tràn đầy hạnh phúc! <br><br>
+    Mong rằng hôm nay và mỗi ngày sau này đều tràn ngập tiếng cười, niềm vui và yêu thương 💕.<br><br>
+    Cảm ơn bạn vì luôn mang lại năng lượng tích cực cho mọi người xung quanh 🌸.<br><br>
+    Chúc tuổi mới của <b>Ngân</b> thêm xinh đẹp, may mắn và luôn rạng rỡ như ánh nến lung linh này 🎁💐🎂
+  </div>
+  <button id="nextImageBtn">Next ➜</button>
+</div>
+
+<!-- Slide 1 -->
+<div class="imageSlide" id="slide1">
+  <img src="480591280_1340868617092435_5708492407284149770_n.jpg" alt="">
+  <p class="caption">🌷 Cô gái trong hình thật dễ thương, ánh mắt hiền lành và nụ cười khiến ai cũng phải mỉm cười 💖</p>
+  <button onclick="nextSlide(2)">Next ➜</button>
+</div>
+
+<!-- Slide 2 -->
+<div class="imageSlide" id="slide2">
+  <img src="473306466_1311856953326935_2056956771995249315_n.jpg" alt="">
+  <p class="caption">💐 Dịu dàng như nắng sớm mai,<br>Gặp em một chút, lòng ai xao xuyến 💞</p>
+  <button onclick="nextSlide(3)">Next ➜</button>
+</div>
+
+<!-- Slide 3 -->
+<div class="imageSlide" id="slide3">
+  <img src="gen-n-z7141954342367_af03f507a0077d6d43718aeb398af511.jpg" alt="">
+  <p class="caption">🌸 Duyên dáng, ngọt ngào như hương hoa,<br>Chúc Ngân mãi xinh và vui như hôm nay 💕</p>
+  <button onclick="endSlides()">🎂 Kết thúc 💖</button>
+</div>
+
+<!-- Nhạc nền -->
+<audio id="bgMusic" src="happy-birthday.mp3" loop></audio>
+
+<script>
+const nextBtn = document.getElementById("nextBtn");
+const passwordInput = document.getElementById("password");
+const loginDiv = document.getElementById("login");
+const mainDiv = document.getElementById("main");
+const errorMsg = document.getElementById("error");
+const CORRECT_PASS = "123456789Hieu";
+
+nextBtn.addEventListener("click", checkPass);
+passwordInput.addEventListener("keyup", (e)=>{ if(e.key === "Enter") checkPass(); });
+
+function checkPass(){
+  const pass = passwordInput.value.trim();
+  if(pass === CORRECT_PASS){
+    loginDiv.style.display = "none";
+    mainDiv.style.display = "block";
+    startFireworks();
+    document.getElementById("bgMusic").play().catch(()=>{}); // bật nhạc
+  } else {
+    errorMsg.style.display = "block";
+    setTimeout(()=> errorMsg.style.display = "none", 1500);
+  }
+}
+
+// ====== Next sang slide đầu tiên ======
+document.getElementById("nextImageBtn").addEventListener("click", ()=>{
+  mainDiv.style.display = "none";
+  document.getElementById("slide1").style.display = "block";
+});
+
+// ====== Chuyển slide ======
+function nextSlide(num){
+  document.querySelectorAll(".imageSlide").forEach(s => s.style.display="none");
+  document.getElementById(`slide${num}`).style.display = "block";
+}
+function endSlides(){
+  document.querySelectorAll(".imageSlide").forEach(s => s.style.display="none");
+  alert("🎉 Hết rồi nè! Chúc Ngân luôn xinh đẹp, vui tươi và thật hạnh phúc 💕");
+}
+
+// ====== Hiệu ứng pháo hoa ======
+function startFireworks(){
+  const canvas = document.getElementById("fireworks");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  class Particle{
+    constructor(x,y,color){
+      this.x=x; this.y=y; this.color=color;
+      this.vx=(Math.random()-0.5)*6;
+      this.vy=(Math.random()-0.8)*6;
+      this.alpha=1; this.size=2+Math.random()*2;
+    }
+    update(){
+      this.x+=this.vx; this.y+=this.vy;
+      this.vy+=0.05; this.alpha-=0.01;
+    }
+    draw(){
+      ctx.globalAlpha=this.alpha;
+      ctx.fillStyle=this.color;
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+      ctx.fill();
+      ctx.globalAlpha=1;
+    }
+  }
+  function createFirework(){
+    const x=Math.random()*canvas.width;
+    const y=Math.random()*canvas.height/2;
+    const colors=["#ff4081","#ffd700","#00e676","#00b0ff","#ff6e40"];
+    const color=colors[Math.floor(Math.random()*colors.length)];
+    for(let i=0;i<50;i++) particles.push(new Particle(x,y,color));
+  }
+  function animate(){
+    ctx.fillStyle="rgba(0,0,0,0.15)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    for(let i=particles.length-1;i>=0;i--){
+      const p=particles[i];
+      p.update(); p.draw();
+      if(p.alpha<=0) particles.splice(i,1);
+    }
+    requestAnimationFrame(animate);
+  }
+  setInterval(createFirework,700);
+  animate();
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chúc mừng sinh nhật 🎂</title>
 <style>
 body {
