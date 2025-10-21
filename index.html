@@ -1,243 +1,242 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chúc mừng sinh nhật 🎂</title>
 <style>
-  :root{
-    --pink1:#ffe6f2; --pink2:#fff0f5; --accent:#ff1493; --text:#4a2033;
-  }
-  html,body{height:100%;margin:0;font-family:"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--pink1),var(--pink2));color:var(--text);overflow:hidden}
-  /* LOGIN */
-  #login{
-    position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,#ffb6c1,#ffc0cb,#ffe6f2);text-align:center;z-index:20;padding:20px;
-  }
-  #banner{display:flex;flex-direction:column;align-items:center;margin-bottom:18px}
-  #banner img{width:96px;height:96px;border-radius:50%;box-shadow:0 8px 26px rgba(0,0,0,0.12);margin-bottom:10px}
-  #banner h1{font-size:28px;color:var(--accent);text-shadow:1px 1px #fff;margin:0}
-  #password{padding:12px 14px;border-radius:12px;border:2px solid var(--accent);width:260px;text-align:center;font-size:16px;outline:none}
-  .btn{margin-top:14px;background:var(--accent);border:none;color:#fff;padding:10px 20px;border-radius:12px;font-size:16px;cursor:pointer;box-shadow:0 8px 18px rgba(255,20,147,0.12)}
-  .btn:hover{background:#ff69b4}
-  #error{color:#c40000;margin-top:12px;font-weight:700;display:none}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #ffe6f2, #fff0f5);
+  height: 100vh;
+  overflow: hidden;
+}
 
-  /* MAIN WISH */
-  #main{display:none;padding:28px;text-align:center;position:relative;z-index:10;height:100%;box-sizing:border-box;overflow:auto}
-  #main h2{color:var(--accent);font-size:34px;margin:8px 0;text-shadow:2px 2px #fff}
-  .message{max-width:820px;margin:18px auto;background:rgba(255,255,255,0.75);padding:20px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.08);line-height:1.6;color:#5a2a40}
-  #nextImageBtn{margin-top:18px}
+/* --- Màn đăng nhập --- */
+#login {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ffe6f2);
+  text-align: center;
+  z-index: 10;
+  animation: fadeIn 1s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  /* CANVAS fireworks under main */
-  canvas#fireworks{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#login h1 {
+  font-size: 28px;
+  color: #ff1493;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px #fff;
+}
+#password {
+  padding: 10px 14px;
+  border: 2px solid #ff1493;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  width: 220px;
+  text-align: center;
+}
+#nextBtn, #nextImageBtn {
+  margin-top: 16px;
+  background: #ff1493;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#nextBtn:hover, #nextImageBtn:hover { background: #ff69b4; }
+#error {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+  display: none;
+  animation: shake 0.3s;
+}
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
 
-  /* IMAGE PAGE */
-  #imagePage{display:none;position:fixed;inset:0;background:#000;z-index:30;display:flex;align-items:center;justify-content:center;flex-direction:column}
-  #imagePage img{max-width:93%;max-height:85vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.6);transform:scale(0.98);animation:imgIn 900ms cubic-bezier(.2,.9,.3,1) forwards}
-  @keyframes imgIn{to{transform:scale(1)}}
+/* --- Trang lời chúc --- */
+#main {
+  display: none;
+  text-align: center;
+  padding: 20px;
+  color: #4a2033;
+}
+h2 {
+  color: #ff1493;
+  font-size: 30px;
+  text-shadow: 2px 2px #fff;
+}
+.message {
+  background: rgba(255,255,255,0.7);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
 
-  /* heart floating around image */
-  .heart{position:absolute;font-size:28px;opacity:0.95;pointer-events:none;transform:translate(-50%,-50%);text-shadow:0 6px 18px rgba(0,0,0,0.25);animation:floatUp linear forwards}
-  @keyframes floatUp{to{transform:translate(-50%,-300%) scale(1.1);opacity:0}}
-
-  /* small responsive */
-  @media(max-width:520px){
-    #banner img{width:80px;height:80px}
-    #password{width:200px}
-    #main h2{font-size:26px}
-    .message{padding:14px}
-  }
+/* --- Trang hình ảnh --- */
+#imagePage {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  text-align: center;
+  overflow: hidden;
+}
+#imagePage img {
+  max-width: 90%;
+  max-height: 90%;
+  margin-top: 5vh;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(255,255,255,0.4);
+  animation: fadeIn 1.5s ease;
+}
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="login" role="dialog" aria-label="Màn nhập mật khẩu">
-  <div id="banner">
-    <!-- bánh kem banner (file phải có trong cùng thư mục) -->
-    <img src="c7b311ab-9b30-4c5c-a19c-8a0549e272db.png" alt="Bánh kem">
-    <h1>🎉 Chúc Mừng Sinh Nhật Nguyễn Thị Kim Ngân 🎂</h1>
-  </div>
-
-  <input id="password" type="password" placeholder="Nhập mật khẩu..." aria-label="Mật khẩu">
-  <button id="nextBtn" class="btn">Next ➜</button>
+<!-- Màn đăng nhập -->
+<div id="login">
+  <h1>🔒 Nhập mật khẩu để mở quà 🎁</h1>
+  <input type="password" id="password" placeholder="Nhập mật khẩu...">
+  <button id="nextBtn">Next ➜</button>
   <div id="error">Sai mật khẩu rồi nha 🥺</div>
 </div>
 
-<!-- FIREWORKS CANVAS (nằm dưới nội dung chính) -->
-<canvas id="fireworks" aria-hidden="true"></canvas>
-
-<!-- MAIN LỜI CHÚC -->
-<div id="main" role="main" aria-live="polite">
+<!-- Trang lời chúc -->
+<canvas id="fireworks"></canvas>
+<div id="main">
   <h2>🎉 Chúc Mừng Sinh Nhật Nguyễn Thị Kim Ngân 🎂</h2>
   <div class="message">
-    💖 Chúc bạn có một ngày sinh nhật thật ngọt ngào và tràn đầy hạnh phúc!<br><br>
+    💖 Chúc bạn có một ngày sinh nhật thật ngọt ngào và tràn đầy hạnh phúc! <br><br>
     Mong rằng hôm nay và mỗi ngày sau này đều tràn ngập tiếng cười, niềm vui và yêu thương 💕.<br><br>
     Cảm ơn bạn vì luôn mang lại năng lượng tích cực cho mọi người xung quanh 🌸.<br><br>
-    Chúc tuổi mới của <strong>Ngân</strong> thêm xinh đẹp, may mắn và luôn rạng rỡ như ánh nến lung linh này 🎁💐🎂
+    Chúc tuổi mới của <b>Ngân</b> thêm xinh đẹp, may mắn và luôn rạng rỡ như ánh nến lung linh này 🎁💐🎂
   </div>
-  <button id="nextImageBtn" class="btn">Next ➜</button>
+  <button id="nextImageBtn">Next ➜</button>
 </div>
 
-<!-- IMAGE PAGE -->
-<div id="imagePage" aria-hidden="true">
-  <img id="finalImage" src="937dedea-f596-4b4f-85d2-ff8190c524a5.png" alt="Hình ảnh sinh nhật" />
+<!-- Trang hình ảnh -->
+<div id="imagePage">
+  <img src="c3593d7f-d636-47f7-9fab-88940a6810b0.png" alt="Hình ảnh sinh nhật">
 </div>
-
-<!-- background music (will play when entering main) -->
-<audio id="bgm" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_78a85dbd7a.mp3?filename=happy-birthday-116841.mp3" type="audio/mpeg">
-  Your browser does not support audio.
-</audio>
 
 <script>
-/* ====== Config ====== */
+// ====== Kiểm tra mật khẩu ======
+const nextBtn = document.getElementById("nextBtn");
+const passwordInput = document.getElementById("password");
+const loginDiv = document.getElementById("login");
+const mainDiv = document.getElementById("main");
+const imageDiv = document.getElementById("imagePage");
+const errorMsg = document.getElementById("error");
+
+// 🔑 Mật khẩu chính xác
 const CORRECT_PASS = "123456789Hieu";
 
-/* ====== DOM refs ====== */
-const passwordInput = document.getElementById('password');
-const nextBtn = document.getElementById('nextBtn');
-const loginDiv = document.getElementById('login');
-const mainDiv = document.getElementById('main');
-const imageDiv = document.getElementById('imagePage');
-const nextImageBtn = document.getElementById('nextImageBtn');
-const errorDiv = document.getElementById('error');
-const bgm = document.getElementById('bgm');
-const fireworksCanvas = document.getElementById('fireworks');
-const finalImage = document.getElementById('finalImage');
+nextBtn.addEventListener("click", checkPass);
+passwordInput.addEventListener("keyup", (e)=>{
+  if(e.key === "Enter") checkPass();
+});
 
-/* ====== Password check ====== */
-nextBtn.addEventListener('click', tryPass);
-passwordInput.addEventListener('keyup', (e)=>{ if(e.key==='Enter') tryPass(); });
-
-function tryPass(){
-  const val = passwordInput.value.trim();
-  if(val === CORRECT_PASS){
-    // show main
-    loginDiv.style.display = 'none';
-    mainDiv.style.display = 'block';
-    // attempt to play music (some browsers require user gesture; this click counts as gesture)
-    bgm.play().catch(()=>{ /* ignore */ });
-    // start fireworks
+function checkPass(){
+  const pass = passwordInput.value.trim();
+  if(pass === CORRECT_PASS){
+    loginDiv.style.display = "none";
+    mainDiv.style.display = "block";
     startFireworks();
   } else {
-    errorDiv.style.display = 'block';
-    setTimeout(()=> errorDiv.style.display = 'none', 1600);
+    errorMsg.style.display = "block";
+    setTimeout(()=> errorMsg.style.display = "none", 1500);
   }
 }
 
-/* ====== Next to image ====== */
-nextImageBtn.addEventListener('click', ()=>{
-  mainDiv.style.display = 'none';
-  imageDiv.style.display = 'flex';
-  // show some hearts floating
-  spawnHeartsAround();
+// ====== Nút Next sang hình ảnh ======
+document.getElementById("nextImageBtn").addEventListener("click", ()=>{
+  mainDiv.style.display = "none";
+  imageDiv.style.display = "block";
 });
 
-/* ====== Fireworks implementation (lightweight) ====== */
-(function prepareCanvas(){
-  const c = fireworksCanvas;
-  const ctx = c.getContext('2d');
-  function resize(){ c.width = innerWidth; c.height = innerHeight; }
-  window.addEventListener('resize', resize);
-  resize();
+// ====== Hiệu ứng pháo hoa ======
+function startFireworks(){
+  const canvas = document.getElementById("fireworks");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  window.addEventListener("resize", ()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
 
   const particles = [];
-
-  class P {
-    constructor(x,y,color,rad){
-      this.x=x; this.y=y; this.vx=(Math.random()-0.5)*4; this.vy=(Math.random()-1.5)*4;
-      this.r=rad|| (2+Math.random()*3); this.color=color; this.life=60+Math.random()*80;
+  class Particle{
+    constructor(x,y,color){
+      this.x=x; this.y=y; this.color=color;
+      this.vx=(Math.random()-0.5)*6;
+      this.vy=(Math.random()-0.8)*6;
+      this.alpha=1; this.size=2+Math.random()*2;
     }
     update(){
-      this.vy += 0.03;
-      this.x += this.vx; this.y += this.vy;
-      this.r *= 0.997;
-      this.life--;
+      this.x+=this.vx; this.y+=this.vy;
+      this.vy+=0.05; this.alpha-=0.01;
     }
     draw(){
+      ctx.globalAlpha=this.alpha;
+      ctx.fillStyle=this.color;
       ctx.beginPath();
-      ctx.globalCompositeOperation = 'lighter';
-      ctx.fillStyle = this.color;
-      ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+      ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
       ctx.fill();
-      ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha=1;
     }
   }
 
-  function spawnFirework(){
-    const x = Math.random()*c.width;
-    const y = Math.random()*c.height*0.45;
-    const cols = ['#ff4081','#ffd700','#00e676','#00b0ff','#ff6e40','#ff77aa'];
-    const col = cols[Math.floor(Math.random()*cols.length)];
-    const count = 30 + Math.floor(Math.random()*30);
-    for(let i=0;i<count;i++){
-      const angle = Math.random()*Math.PI*2;
-      const speed = 1.6 + Math.random()*3.2;
-      const vx = Math.cos(angle)*speed;
-      const vy = Math.sin(angle)*speed;
-      const p = new P(x,y,col,2+Math.random()*3);
-      p.vx = vx; p.vy = vy;
-      particles.push(p);
+  function createFirework(){
+    const x=Math.random()*canvas.width;
+    const y=Math.random()*canvas.height/2;
+    const colors=["#ff4081","#ffd700","#00e676","#00b0ff","#ff6e40"];
+    const color=colors[Math.floor(Math.random()*colors.length)];
+    for(let i=0;i<50;i++){
+      particles.push(new Particle(x,y,color));
     }
   }
 
-  function loop(){
-    ctx.fillStyle = 'rgba(8,8,12,0.12)';
-    ctx.fillRect(0,0,c.width,c.height);
+  function animate(){
+    ctx.fillStyle="rgba(0,0,0,0.15)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
     for(let i=particles.length-1;i>=0;i--){
-      particles[i].update();
-      particles[i].draw();
-      if(particles[i].life <= 0 || particles[i].r < 0.2) particles.splice(i,1);
+      const p=particles[i];
+      p.update(); p.draw();
+      if(p.alpha<=0) particles.splice(i,1);
     }
-    requestAnimationFrame(loop);
+    requestAnimationFrame(animate);
   }
 
-  // exports
-  window.startFireworks = function(){
-    // spawn some immediately and then interval
-    for(let i=0;i<3;i++){ spawnFirework(); }
-    if(window.__fireInterval) clearInterval(window.__fireInterval);
-    window.__fireInterval = setInterval(spawnFirework,700);
-    loop();
-  };
-})();
-
-/* ====== Hearts around final image ====== */
-function spawnHeartsAround(){
-  const names = ['💖','💘','💕','🌸','🌷'];
-  const container = imageDiv;
-  const rect = finalImage.getBoundingClientRect();
-  // generate multiple hearts
-  for(let i=0;i<18;i++){
-    (function(i){
-      setTimeout(()=>{
-        const el = document.createElement('div');
-        el.className = 'heart';
-        el.textContent = names[Math.floor(Math.random()*names.length)];
-        // random position around image center
-        const cx = window.innerWidth/2 + (Math.random()-0.5)*(rect.width*0.6);
-        const cy = window.innerHeight/2 + (Math.random()-0.5)*(rect.height*0.2);
-        el.style.left = cx + 'px';
-        el.style.top = cy + 'px';
-        el.style.fontSize = (18 + Math.random()*32) + 'px';
-        el.style.animationDuration = (2400 + Math.random()*2600) + 'ms';
-        container.appendChild(el);
-        // remove after animation
-        setTimeout(()=> el.remove(), 5200);
-      }, i*120);
-    })(i);
-  }
-  // also gently pulse the image
-  finalImage.animate([{transform:'scale(0.98)'},{transform:'scale(1)'}],{duration:900,iterations:2,easing:'cubic-bezier(.2,.9,.3,1)'});
+  setInterval(createFirework,700);
+  animate();
 }
-
-/* ====== Try to resume music if user previously interacted ====== */
-document.addEventListener('visibilitychange', ()=> {
-  if(!document.hidden && mainDiv.style.display === 'block'){
-    bgm.play().catch(()=>{});
-  }
-});
 </script>
 </body>
 </html>
