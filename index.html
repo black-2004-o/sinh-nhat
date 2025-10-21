@@ -28,12 +28,32 @@ body {
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-#login h1 {
+#banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+  animation: popIn 1s ease;
+}
+#banner img {
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255,255,255,0.6);
+  margin-bottom: 10px;
+}
+@keyframes popIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+#banner h1 {
   font-size: 28px;
   color: #ff1493;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px #fff;
+  text-shadow: 1px 1px 2px #fff;
+  font-weight: bold;
 }
+
 #password {
   padding: 10px 14px;
   border: 2px solid #ff1493;
@@ -120,7 +140,10 @@ canvas {
 
 <!-- Màn đăng nhập -->
 <div id="login">
-  <h1>🔒 Nhập mật khẩu để mở quà 🎁</h1>
+  <div id="banner">
+    <img src="c7b311ab-9b30-4c5c-a19c-8a0549e272db.png" alt="Bánh kem sinh nhật">
+    <h1>🎉 Chúc Mừng Sinh Nhật Nguyễn Thị Kim Ngân 🎂</h1>
+  </div>
   <input type="password" id="password" placeholder="Nhập mật khẩu...">
   <button id="nextBtn">Next ➜</button>
   <div id="error">Sai mật khẩu rồi nha 🥺</div>
@@ -141,7 +164,7 @@ canvas {
 
 <!-- Trang hình ảnh -->
 <div id="imagePage">
-  <img src="c3593d7f-d636-47f7-9fab-88940a6810b0.png" alt="Hình ảnh sinh nhật">
+  <img src="473306466_1311856953326935_2056956771995249315_n.jpg" alt="Hình ảnh sinh nhật">
 </div>
 
 <script>
