@@ -1,261 +1,267 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Chúc mừng sinh nhật 20-11</title>
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(to bottom, #ffe6f2, #fff0f5);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      overflow: hidden;
-      font-family: "Segoe UI", sans-serif;
+    :root{
+      --pink-1: #ffe6f2;
+      --pink-2: #fff0f5;
+      --accent: #ff1493;
+      --text: #4a2033;
+    }
+    html,body{height:100%;margin:0;font-family:"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;background:linear-gradient(180deg,var(--pink-1),var(--pink-2));color:var(--text);overflow-x:hidden;}
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:28px 16px 48px;
+      box-sizing:border-box;
+      position:relative;
+      z-index:2;
     }
 
-    h1 {
-      color: #ff1493;
-      font-size: 2.8em;
-      text-shadow: 2px 2px #fff;
-      margin-top: 30px;
-      animation: pulse 1.5s infinite alternate;
+    h1{
+      color:var(--accent);
+      font-size:clamp(24px,4vw,44px);
+      margin:12px 0 8px;
+      text-align:center;
+      text-shadow:2px 2px #fff;
+      animation:pulse 1.6s infinite alternate;
+    }
+    @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.04)}}
+
+    /* Cake & candle */
+    .cake{
+      position:relative;
+      width:clamp(140px,20vw,220px);
+      height:clamp(90px,12vw,140px);
+      background:#ff80aa;
+      border-radius:12px;
+      box-shadow:0 8px 0 #cc3366;
+      margin-top:20px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+    .candle{
+      position:absolute;
+      top:-46px;
+      left:50%;
+      transform:translateX(-50%);
+      width:14px;height:50px;background:#fff;border-radius:6px;
+      display:flex;align-items:flex-start;justify-content:center;overflow:visible;
+    }
+    .wax{
+      width:10px;height:40px;background:linear-gradient(#fff,#f0f0f0);border-radius:6px;
+    }
+    .flame{
+      position:absolute;
+      top:-22px;
+      left:50%;
+      transform:translateX(-50%);
+      width:20px;height:28px;border-radius:50% 50% 50% 30%;
+      background: radial-gradient(circle at 35% 30%, #fff900 0%, #ffb400 30%, #ff5500 70%);
+      filter:drop-shadow(0 3px 6px rgba(255,120,150,0.25));
+      animation:flicker 0.35s infinite alternate ease-in-out;
+      transform-origin:center bottom;
+    }
+    @keyframes flicker{
+      from{transform:translateX(-50%) scale(1) translateY(0)}
+      to{transform:translateX(-50%) scale(1.18) translateY(-3px)}
+    }
+    .candle-light{
+      position:absolute; top:-10px; left:50%; transform:translateX(-50%); width:80px; height:80px;
+      background:radial-gradient(circle at 50% 20%, rgba(255,200,170,0.18), rgba(255,100,160,0.03) 40%, transparent 60%);
+      pointer-events:none;
     }
 
-    @keyframes pulse {
-      from { transform: scale(1); }
-      to { transform: scale(1.05); }
+    /* Character */
+    .character{ margin-top:26px; width:clamp(120px,18vw,180px); display:flex; justify-content:center; }
+    .face{
+      width:clamp(100px,15vw,140px); height:clamp(100px,15vw,140px); background:#ffe0bd; border-radius:50%;
+      position:relative; display:block;
+      box-shadow:0 8px 18px rgba(0,0,0,0.06);
+      animation:breathe 4s ease-in-out infinite;
+    }
+    @keyframes breathe{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+    .hair{position:absolute; top:-6px; left:50%; transform:translateX(-50%); width:80%; height:50px; background:#8b4513;border-radius:60px 60px 30px 30px; z-index:0}
+    .eye{width:12px;height:12px;background:#000;border-radius:50%;position:absolute;top:48%;transform:translateY(-50%); animation:blink 3s infinite;}
+    .eye.left{left:28%} .eye.right{right:28%}
+    @keyframes blink{0%,90%,100%{height:12px}95%{height:3px}}
+    .mouth{position:absolute; left:50%; bottom:28%; transform:translateX(-50%); width:36px; height:20px; background:#e94e77; border-radius:0 0 50% 50%}
+
+    /* Message */
+    .message{
+      margin-top:24px;
+      max-width:880px;
+      width:92%;
+      font-size:clamp(14px,2.4vw,18px);
+      color: #5a2a40;
+      line-height:1.6;
+      text-align:center;
+      background: rgba(255,255,255,0.7);
+      padding:18px;
+      border-radius:12px;
+      box-shadow:0 8px 20px rgba(90,40,60,0.06);
+      backdrop-filter: blur(4px);
     }
 
-    .cake {
-      position: relative;
-      width: 180px;
-      height: 110px;
-      background: #ff80aa;
-      border-radius: 10px;
-      box-shadow: 0 5px 0 #cc3366;
-      margin-top: 40px;
-    }
+    /* Floating emojis */
+    .floating{position:fixed; bottom:-60px; font-size:20px; pointer-events:none; z-index:1; opacity:0.95; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.08));}
 
-    .candle {
-      position: absolute;
-      top: -45px;
-      left: 85px;
-      width: 12px;
-      height: 45px;
-      background: #fff;
-      border-radius: 5px;
-    }
+    /* Footer controls */
+    .controls{margin-top:18px; display:flex; gap:10px; align-items:center;}
+    button {padding:8px 12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08);background:#fff;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.03)}
+    button:active{transform:translateY(1px)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-    .flame {
-      position: absolute;
-      top: -18px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 18px;
-      height: 18px;
-      background: radial-gradient(circle, #ff0, #ff6600);
-      border-radius: 50%;
-      animation: flicker 0.3s infinite alternate;
-    }
+    /* Canvas */
+    canvas#fireworks{position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;}
+    /* ensure main content above canvas */
+    .wrap{position:relative; z-index:2}
 
-    @keyframes flicker {
-      from { transform: translateX(-50%) scale(1); opacity: 1; }
-      to { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
-    }
-
-    .character {
-      position: relative;
-      margin-top: 40px;
-      width: 160px;
-      height: 200px;
-    }
-
-    .face {
-      width: 120px;
-      height: 120px;
-      background: #ffe0bd;
-      border-radius: 50%;
-      margin: auto;
-      position: relative;
-    }
-
-    .hair {
-      position: absolute;
-      top: -10px;
-      left: 0;
-      width: 120px;
-      height: 80px;
-      background: #8b4513;
-      border-radius: 60px 60px 30px 30px;
-      z-index: -1;
-    }
-
-    .eye {
-      width: 12px;
-      height: 12px;
-      background: #000;
-      border-radius: 50%;
-      position: absolute;
-      top: 45px;
-      animation: blink 3s infinite;
-    }
-    .eye.left { left: 35px; }
-    .eye.right { right: 35px; }
-
-    @keyframes blink {
-      0%, 90%, 100% { height: 12px; }
-      95% { height: 3px; }
-    }
-
-    .mouth {
-      position: absolute;
-      bottom: 35px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 35px;
-      height: 20px;
-      background: #e94e77;
-      border-radius: 0 0 50% 50%;
-    }
-
-    .message {
-      margin-top: 50px;
-      color: #ff4081;
-      font-size: 1.3em;
-      text-align: center;
-      width: 80%;
-      line-height: 1.6;
-      animation: fadein 3s;
-    }
-
-    @keyframes fadein {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .floating {
-      position: absolute;
-      bottom: 0;
-      animation: floatUp 6s infinite;
-      opacity: 0.8;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
-      100% { transform: translateY(-100vh) scale(1); opacity: 0; }
-    }
-
-    canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: -1;
+    @media (max-width:420px){
+      .cake{margin-top:10px}
+      .message{padding:14px}
     }
   </style>
 </head>
 <body>
-  <canvas id="fireworks"></canvas>
+  <canvas id="fireworks" aria-hidden="true"></canvas>
 
-  <h1>🎉 Chúc Mừng Sinh Nhật 20/11 🎂</h1>
+  <main class="wrap" role="main">
+    <h1>🎉 Chúc Mừng Sinh Nhật 20/11 🎂</h1>
 
-  <div class="cake">
-    <div class="candle">
-      <div class="flame"></div>
+    <div class="cake" aria-hidden="true">
+      <div class="candle" aria-hidden="true">
+        <div class="wax"></div>
+        <div class="flame" aria-hidden="true"></div>
+        <div class="candle-light" aria-hidden="true"></div>
+      </div>
     </div>
-  </div>
 
-  <div class="character">
-    <div class="face">
-      <div class="hair"></div>
-      <div class="eye left"></div>
-      <div class="eye right"></div>
-      <div class="mouth"></div>
+    <div class="character" aria-hidden="true">
+      <div class="face">
+        <div class="hair"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="mouth"></div>
+      </div>
     </div>
-  </div>
 
-  <div class="message">
-    💖 <b>Nguyễn Thị Kim Ngân</b> thân mến 💖<br><br>
-    Chúc bạn có một ngày sinh nhật thật trọn vẹn và ngọt ngào như chính nụ cười của bạn 🌸.<br><br>
-    Mong rằng từng giây phút hôm nay sẽ đều ngập tràn tiếng cười, niềm vui và những điều đáng yêu nhất trên thế giới này 💕.<br><br>
-    Cảm ơn bạn vì đã luôn là một người tuyệt vời – dễ thương, ấm áp và truyền năng lượng tích cực cho mọi người xung quanh 🌷.<br><br>
-    Hy vọng tuổi mới sẽ mang đến cho <b>Ngân</b> thật nhiều điều tốt đẹp: học tập thuận lợi, sức khỏe dồi dào và luôn được yêu thương như hôm nay 🥰.<br><br>
-    Hãy cười thật tươi, vì hôm nay là ngày dành riêng cho bạn đó! 🎁🎂💐
-  </div>
+    <div class="message" id="wish">
+      💖 <strong>Nguyễn Thị Kim Ngân</strong> thân mến 💖<br><br>
+      Chúc bạn có một ngày sinh nhật thật trọn vẹn và ngọt ngào như chính nụ cười của bạn 🌸.<br><br>
+      Mong rằng từng giây phút hôm nay sẽ đều ngập tràn tiếng cười, niềm vui và những điều đáng yêu nhất trên thế giới này 💕.<br><br>
+      Cảm ơn bạn vì đã luôn là một người tuyệt vời – dễ thương, ấm áp và truyền năng lượng tích cực cho mọi người xung quanh 🌷.<br><br>
+      Hy vọng tuổi mới sẽ mang đến cho <strong>Ngân</strong> thật nhiều điều tốt đẹp: học tập thuận lợi, sức khỏe dồi dào và luôn được yêu thương như hôm nay 🥰.<br><br>
+      Hãy cười thật tươi, vì hôm nay là ngày dành riêng cho bạn đó! 🎁🎂💐
+    </div>
 
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_78a85dbd7a.mp3?filename=happy-birthday-116841.mp3" type="audio/mpeg">
-  </audio>
+    <div class="controls" aria-hidden="false">
+      <audio id="bgm" preload="auto" controls>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_78a85dbd7a.mp3?filename=happy-birthday-116841.mp3" type="audio/mpeg">
+        Trình duyệt của bạn không hỗ trợ phát audio.
+      </audio>
+      <button id="muteBtn" type="button" aria-pressed="false">Tắt / Bật nhạc</button>
+      <button id="sparkBtn" type="button">Tắt / Bật pháo hoa</button>
+      <span class="sr-only" id="status">Pháo hoa đang hoạt động</span>
+    </div>
+  </main>
 
+  <!-- Floating emojis are appended by JS -->
   <script>
-    // Pháo hoa
+    // =========== Fireworks canvas ===========
     const canvas = document.getElementById('fireworks');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function resizeCanvas(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+    resizeCanvas();
+    addEventListener('resize', resizeCanvas);
 
-    const fireworks = [];
+    const particles = [];
 
     class Particle {
-      constructor(x, y, color) {
-        this.x = x;
-        this.y = y;
-        this.radius = Math.random() * 3 + 1;
-        this.color = color;
-        this.speedX = Math.random() * 4 - 2;
-        this.speedY = Math.random() * 4 - 2;
-        this.life = 100;
+      constructor(x,y,color,size,velocity){
+        this.x=x; this.y=y; this.color=color; this.radius=size;
+        this.vx = velocity.x; this.vy = velocity.y;
+        this.life = 80 + Math.random()*60;
+        this.decay = 0.96 + Math.random()*0.02;
       }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+      update(){
+        this.vy += 0.04; // gravity
+        this.x += this.vx; this.y += this.vy;
+        this.vx *= 0.998;
+        this.vy *= 0.998;
         this.life--;
+        this.radius *= 0.997;
       }
-      draw() {
+      draw(){
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.arc(this.x, this.y, Math.max(0, this.radius), 0, Math.PI*2);
         ctx.fillStyle = this.color;
         ctx.fill();
+        ctx.globalCompositeOperation = 'source-over';
       }
     }
 
-    function createFirework(x, y) {
-      const colors = ['#ff4081', '#ffd700', '#00e676', '#00b0ff'];
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      for (let i = 0; i < 30; i++) {
-        fireworks.push(new Particle(x, y, color));
+    function spawnFirework(x,y){
+      const colors = ['#ff4081','#ffd700','#00e676','#00b0ff','#ff6e40'];
+      const color = colors[Math.floor(Math.random()*colors.length)];
+      const count = 28 + Math.floor(Math.random()*18);
+      for(let i=0;i<count;i++){
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 1.8 + Math.random()*3.2;
+        const vx = Math.cos(angle)*speed;
+        const vy = Math.sin(angle)*speed;
+        const size = 2 + Math.random()*3;
+        particles.push(new Particle(x,y,color,size,{x:vx,y:vy}));
       }
     }
 
-    function animate() {
-      ctx.fillStyle = 'rgba(0,0,0,0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      for (let i = fireworks.length - 1; i >= 0; i--) {
-        fireworks[i].update();
-        fireworks[i].draw();
-        if (fireworks[i].life <= 0) fireworks.splice(i, 1);
+    function animate(){
+      ctx.fillStyle = 'rgba(6,6,8,0.12)';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      for(let i=particles.length-1;i>=0;i--){
+        particles[i].update();
+        particles[i].draw();
+        if(particles[i].life <= 0 || particles[i].radius <= 0.2) particles.splice(i,1);
       }
       requestAnimationFrame(animate);
     }
     animate();
 
-    setInterval(() => createFirework(Math.random() * canvas.width, Math.random() * canvas.height / 2), 700);
+    let fireworksOn = true;
+    let fwInterval = setInterval(()=> {
+      if(!fireworksOn) return;
+      const x = Math.random()*canvas.width;
+      const y = Math.random()*canvas.height*0.45;
+      spawnFirework(x,y);
+    }, 700);
 
-    // Hiệu ứng trái tim & hoa bay
-    const emojis = ["💖", "🌸", "💐", "🌷", "💕"];
-    function createFloating() {
-      const el = document.createElement("div");
-      el.classList.add("floating");
-      el.style.left = Math.random() * 100 + "vw";
-      el.style.animationDuration = (4 + Math.random() * 3) + "s";
-      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    // Toggle button
+    document.getElementById('sparkBtn').addEventListener('click', ()=>{
+      fireworksOn = !fireworksOn;
+      document.getElementById('status').textContent = fireworksOn ? 'Pháo hoa đang hoạt động' : 'Pháo hoa đã tắt';
+    });
+
+    // =========== Floating emojis ===========
+    const emojis = ["💖","🌸","💐","🌷","💕"];
+    function createFloating(){
+      const el = document.createElement('div');
+      el.className = 'floating';
+      const size = 16 + Math.random()*18;
+      el.style.fontSize = size + 'px';
+      el.style.left = (Math.random()*80+5) + 'vw';
+      el.style.bottom = '-40px';
+      el.style.opacity = (0.7 + Math.random()*0.3);
+      el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      el.style.transition = 'transform linear';
       document.body.appendChild(el);
-      setTimeout(() => el.remove(), 7000);
-    }
-    setInterval(createFloating, 500);
-  </script>
-</body>
-</html>
+      // animate using requestAnimationFrame
+      const travel = innerHeight + 120 + Math.random()*180;
+      const duration = 4200 + Math.random()*3800;
+      const s
