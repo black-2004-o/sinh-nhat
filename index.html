@@ -35,16 +35,25 @@ body {
   margin-bottom: 24px;
   animation: popIn 1.5s ease;
 }
+
+/* 🎂 Ảnh bánh kem to và đẹp hơn */
 #banner img {
-  width: 220px;                /* 🎂 to hơn */
+  width: 340px;               /* 👉 To hơn rõ ràng */
+  max-width: 90vw;
   height: auto;
-  border-radius: 50% / 35%;    /* hình oval như tấm bạn gửi */
-  box-shadow: 0 0 25px rgba(255,255,255,0.8);
-  margin-bottom: 20px;
+  border-radius: 50% / 35%;   /* Bo oval mềm mại */
+  box-shadow: 0 0 40px rgba(255,255,255,0.9), 0 0 20px rgba(255,192,203,0.8);
+  margin-bottom: 25px;
   animation: cakePop 1.5s ease;
+  transform: scale(1);
+  transition: transform 0.8s ease;
 }
+#banner img:hover {
+  transform: scale(1.08);     /* Phóng nhẹ khi rê chuột */
+}
+
 @keyframes cakePop {
-  0% { transform: scale(0.5); opacity: 0; }
+  0% { transform: scale(0.3); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
 
@@ -62,7 +71,7 @@ body {
   border-radius: 10px;
   font-size: 16px;
   outline: none;
-  width: 220px;
+  width: 240px;
   text-align: center;
 }
 #nextBtn, #nextImageBtn, #finalNextBtn {
