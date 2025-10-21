@@ -43,7 +43,7 @@ body {
   width: 220px;
   text-align: center;
 }
-#nextBtn {
+#nextBtn, #nextImageBtn {
   margin-top: 16px;
   background: #ff1493;
   border: none;
@@ -54,7 +54,7 @@ body {
   cursor: pointer;
   transition: 0.3s;
 }
-#nextBtn:hover { background: #ff69b4; }
+#nextBtn:hover, #nextImageBtn:hover { background: #ff69b4; }
 #error {
   color: red;
   margin-top: 10px;
@@ -68,7 +68,7 @@ body {
   75% { transform: translateX(5px); }
 }
 
-/* --- Trang chính --- */
+/* --- Trang lời chúc --- */
 #main {
   display: none;
   text-align: center;
@@ -89,6 +89,24 @@ h2 {
   margin: 0 auto;
   line-height: 1.6;
 }
+
+/* --- Trang hình ảnh --- */
+#imagePage {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  text-align: center;
+  overflow: hidden;
+}
+#imagePage img {
+  max-width: 90%;
+  max-height: 90%;
+  margin-top: 5vh;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(255,255,255,0.4);
+  animation: fadeIn 1.5s ease;
+}
 canvas {
   position: fixed;
   top: 0;
@@ -108,7 +126,7 @@ canvas {
   <div id="error">Sai mật khẩu rồi nha 🥺</div>
 </div>
 
-<!-- Trang chính -->
+<!-- Trang lời chúc -->
 <canvas id="fireworks"></canvas>
 <div id="main">
   <h2>🎉 Chúc Mừng Sinh Nhật Nguyễn Thị Kim Ngân 🎂</h2>
@@ -118,6 +136,12 @@ canvas {
     Cảm ơn bạn vì luôn mang lại năng lượng tích cực cho mọi người xung quanh 🌸.<br><br>
     Chúc tuổi mới của <b>Ngân</b> thêm xinh đẹp, may mắn và luôn rạng rỡ như ánh nến lung linh này 🎁💐🎂
   </div>
+  <button id="nextImageBtn">Next ➜</button>
+</div>
+
+<!-- Trang hình ảnh -->
+<div id="imagePage">
+  <img src="c3593d7f-d636-47f7-9fab-88940a6810b0.png" alt="Hình ảnh sinh nhật">
 </div>
 
 <script>
@@ -126,6 +150,7 @@ const nextBtn = document.getElementById("nextBtn");
 const passwordInput = document.getElementById("password");
 const loginDiv = document.getElementById("login");
 const mainDiv = document.getElementById("main");
+const imageDiv = document.getElementById("imagePage");
 const errorMsg = document.getElementById("error");
 
 // 🔑 Mật khẩu chính xác
@@ -147,6 +172,12 @@ function checkPass(){
     setTimeout(()=> errorMsg.style.display = "none", 1500);
   }
 }
+
+// ====== Nút Next sang hình ảnh ======
+document.getElementById("nextImageBtn").addEventListener("click", ()=>{
+  mainDiv.style.display = "none";
+  imageDiv.style.display = "block";
+});
 
 // ====== Hiệu ứng pháo hoa ======
 function startFireworks(){
