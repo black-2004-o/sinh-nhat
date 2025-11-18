@@ -36,7 +36,7 @@
     z-index: 2;
   }
 
-  /* ẢNH tối ưu cho điện thoại */
+  /* ẢNH tối ưu mobile */
   img {
     width: 100%;
     max-width: 340px;
@@ -45,6 +45,12 @@
     box-shadow: 0 5px 22px rgba(0,0,0,0.15);
     margin: 20px 0;
     display: block;
+  }
+
+  /* ✅ FIX ảnh slide 2: không che chữ */
+  #page2 img {
+    max-height: 240px;
+    object-fit: cover;
   }
 
   .cake {
@@ -162,7 +168,6 @@ function nextPage(num) {
   next.classList.add("active");
   current = num;
 
-  // Fireworks
   for (let i = 0; i < 18; i++) {
     const f = document.createElement('div');
     f.className = 'firework';
@@ -180,10 +185,9 @@ setInterval(() => {
   nextPage(next);
 }, 5000);
 
-// Hearts animation
 setInterval(() => {
   const container = document.getElementById('heart-container');
-  if (container.childElementCount > 12) return; // tránh lag mobile
+  if (container.childElementCount > 12) return;
 
   const heart = document.createElement('div');
   heart.classList.add('heart');
