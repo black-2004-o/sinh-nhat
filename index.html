@@ -36,7 +36,6 @@
     z-index: 2;
   }
 
-  /* ẢNH tối ưu mobile */
   img {
     width: 100%;
     max-width: 320px;
@@ -47,225 +46,114 @@
     display: block;
   }
 
-  /* Giảm kích thước slide 3 */
-  #page3 img {
-    max-height: 220px;
-    object-fit: cover;
-  }
+  #page3 img { max-height: 220px; object-fit: cover; }
+  #page2 img { max-height: 240px; object-fit: cover; }
 
-  /* FIX ảnh slide 2 */
-  #page2 img {
-    max-height: 240px;
-    object-fit: cover;
-  }
+  .cake { font-size: 4em; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);} }
 
-  .cake {
-    font-size: 4em;
-    animation: float 3s ease-in-out infinite;
-  }
-  @keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
+  h1 { color:#ff2e9b; font-size:1.9em; margin-top:10px; text-shadow:0 0 15px #ff8ecf; }
+  p { color:#444; font-size:1.1em; line-height:1.7; }
 
-  h1 {
-    color: #ff2e9b;
-    font-size: 1.9em;
-    margin-top: 10px;
-    text-shadow: 0 0 15px #ff8ecf;
-  }
+  .firework { position: fixed; width:4px; height:4px; border-radius:50%; pointer-events:none; animation:explode 1s ease-out forwards; }
+  @keyframes explode { from{transform:scale(1);opacity:1;} to{transform:scale(3);opacity:0;} }
 
-  p {
-    color: #444;
-    font-size: 1.1em;
-    line-height: 1.7;
-  }
+  .hearts { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:5; }
+  .heart { position:absolute; bottom:-20px; font-size:18px; opacity:0.7; animation: floatUp 4s linear infinite; }
+  @keyframes floatUp { 0%{transform:translateY(0) scale(1);opacity:0.8;} 50%{opacity:1;} 100%{transform:translateY(-120vh) scale(1.6);opacity:0;} }
 
-  /* Firework */
-  .firework {
-    position: fixed;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    pointer-events: none;
-    animation: explode 1s ease-out forwards;
-  }
-  @keyframes explode {
-    from { transform: scale(1); opacity: 1; }
-    to { transform: scale(3); opacity: 0; }
-  }
-
-  /* Hearts */
-  .hearts {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 5;
-  }
-  .heart {
-    position: absolute;
-    bottom: -20px;
-    font-size: 18px;
-    opacity: 0.7;
-    animation: floatUp 4s linear infinite;
-  }
-  @keyframes floatUp {
-    0% { transform: translateY(0) scale(1); opacity: 0.8; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-120vh) scale(1.6); opacity: 0; }
-  }
-
-  /* Nút Bí Mật */
-  .secret-btn {
-    margin-top: 20px;
-    padding: 12px 20px;
-    background: #ff72b5;
-    color: white;
-    border-radius: 14px;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  }
-  #secret-text {
-    margin-top: 15px;
-    font-size: 1.2em;
-    color: #ff2e9b;
-    display: none;
-  }
+  .secret-btn { margin-top:20px; padding:12px 20px; background:#ff72b5; color:white; border-radius:14px; font-size:1.1em; font-weight:bold; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
+  #secret-text { margin-top:15px; font-size:1.2em; color:#ff2e9b; display:none; text-align:center; }
 </style>
 </head>
-
 <body>
 
-<!-- YÊU CẦU MẬT KHẨU -->
 <script>
 window.onload = function() {
   let pw = prompt("Hãy nhập mật khẩu đi không biết là giận đó🌚🌚🌚");
-  if (pw !== "20-11-2004") {
-    alert("Sai rồi nha 😤 Không được vô đâu!");
-    document.body.innerHTML = "";
-  }
+  if (pw !== "20-11-2004") { alert("Sai rồi nha 😤 Không được vô đâu!"); document.body.innerHTML = ""; }
 };
 </script>
 
-<!-- PAGE 1 -->
 <div class="page active" id="page1">
   <div class="cake">🎂💖</div>
   <h1>Chúc Mừng Sinh Nhật<br>Nguyễn Thị Kim Ngân 🎉</h1>
   <img src="z7141954347992_01fc0112130cdebda054ebd0d8491e7b.jpg" alt="Birthday">
-
-  <div class="secret-btn" onclick="showSecret()">Bấm nhẹ nhẹ có bí mật nè 😳</div>
-  <div id="secret-text">Bí mật này không xem được đâu 🙈</div>
 </div>
 
-<!-- PAGE 2 -->
 <div class="page" id="page2">
   <h1>🌸 Lời Chúc Đầu Tiên 🌸</h1>
-  <p>
-    Chúc Ngân một ngày sinh nhật thật ngọt ngào và đầy yêu thương 💕<br>
-    Mọi điều tốt đẹp nhất sẽ đến với Ngân 🌈<br>
-    Luôn rạng rỡ và hạnh phúc nhé ☀️💖
-  </p>
+  <p>Chúc Ngân một ngày sinh nhật thật ngọt ngào và đầy yêu thương 💕<br>Mọi điều tốt đẹp nhất sẽ đến với Ngân 🌈<br>Luôn rạng rỡ và hạnh phúc nhé ☀️💖</p>
   <img src="z7141954342367_af03f507a0077d6d43718aeb398af511.jpg" alt="Slide 2">
 </div>
 
-<!-- PAGE 3 -->
 <div class="page" id="page3">
   <h1>🌷 Lời Chúc Tiếp Theo 🌷</h1>
-  <p>
-    Chúc Ngân luôn mạnh mẽ, tự tin và hạnh phúc trên hành trình của mình 🌈<br>
-    Ngân là cô gái đặc biệt và đáng yêu nhất 🎀<br>
-    Chúc tuổi mới thật nhiều niềm vui và may mắn 💫
-  </p>
+  <p>Chúc Ngân luôn mạnh mẽ, tự tin và hạnh phúc trên hành trình của mình 🌈<br>Ngân là cô gái đặc biệt và đáng yêu nhất 🎀<br>Chúc tuổi mới thật nhiều niềm vui và may mắn 💫</p>
   <img src="z7203904822246_913fa2275d4ab23eae66ad52ce50b185.jpg" alt="Slide 3">
 </div>
 
-<!-- PAGE 4 -->
 <div class="page" id="page4">
   <div class="cake">🎂🎉💖</div>
   <h1>🎁 Happy Birthday Nguyễn Thị Kim Ngân 🎁</h1>
-  <p>
-    Chúc Ngân nhận được những điều tuyệt vời nhất 💝<br>
-    Cảm ơn vì sự hiền lành và niềm vui mà Ngân mang lại 🌸<br>
-    Chúc Ngân luôn rạng rỡ, thành công và hạnh phúc 💕
-  </p>
+  <p>Chúc Ngân nhận được những điều tuyệt vời nhất 💝<br>Cảm ơn vì sự hiền lành và niềm vui mà Ngân mang lại 🌸<br>Chúc Ngân luôn rạng rỡ, thành công và hạnh phúc 💕</p>
 </div>
 
 <div class="hearts" id="heart-container"></div>
 
 <script>
-// Slideshow
 let current = 1;
 function nextPage(num) {
-  document.getElementById("page" + current).classList.remove("active");
-  const next = document.getElementById("page" + num);
+  document.getElementById("page"+current).classList.remove("active");
+  const next = document.getElementById("page"+num);
   next.classList.add("active");
   current = num;
-
-  // Firework
-  for (let i = 0; i < 18; i++) {
-    const f = document.createElement('div');
-    f.className = 'firework';
-    f.style.left = Math.random() * 100 + 'vw';
-    f.style.top = Math.random() * 100 + 'vh';
-    f.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+  for (let i=0;i<18;i++){
+    const f=document.createElement('div');
+    f.className='firework';
+    f.style.left=Math.random()*100+'vw';
+    f.style.top=Math.random()*100+'vh';
+    f.style.backgroundColor=`hsl(${Math.random()*360},100%,70%)`;
     document.body.appendChild(f);
-    setTimeout(() => f.remove(), 1000);
+    setTimeout(()=>f.remove(),1000);
   }
 }
-setInterval(() => {
-  let next = current + 1;
-  if (next > 4) next = 1;
-  nextPage(next);
-}, 5000);
-
-// Hearts
-setInterval(() => {
-  const container = document.getElementById('heart-container');
-  if (container.childElementCount > 12) return;
-
-  const heart = document.createElement('div');
+setInterval(()=>{let next=current+1;if(next>4) next=1;nextPage(next);},5000);
+setInterval(()=>{
+  const container=document.getElementById('heart-container');
+  if(container.childElementCount>12) return;
+  const heart=document.createElement('div');
   heart.classList.add('heart');
-  heart.textContent = '💖';
-  heart.style.left = Math.random() * 90 + 'vw';
-  heart.style.fontSize = (16 + Math.random() * 12) + 'px';
-  heart.style.animationDuration = (3 + Math.random() * 3) + 's';
-
+  heart.textContent='💖';
+  heart.style.left=Math.random()*90+'vw';
+  heart.style.fontSize=(16+Math.random()*12)+'px';
+  heart.style.animationDuration=(3+Math.random()*3)+'s';
   container.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}, 800);
+  setTimeout(()=>heart.remove(),6000);
+},800);
 
-// SECRET
-function showSecret() {
-  document.getElementById("secret-text").style.display = "block";
-}
+function showSecret(){ document.getElementById('secret-text').style.display='block'; }
 </script>
 
-  <!-- NÚT BÍ MẬT Ở CUỐI -->
-  <div id="secretBox" style="margin-top:20px; cursor:pointer; font-size:1.2em; color:#ff2e9b; text-decoration:underline;">
-    🔒 Nhấn để xem bí mật
-  </div>
-
-  <!-- ẢNH BÍ MẬT (ẨN) -->
+<!-- NÚT BÍ MẬT CUỐI TRANG -->
+<div style="text-align:center; margin:20px;">
+  <div id="secretBox" class="secret-btn">🔒 Nhấn để xem bí mật</div>
+  <div id="secret-text">Bí mật này không xem được đâu 🙈</div>
   <div id="secretImage" style="display:none; margin-top:15px; text-align:center;">
     <p style='font-size:1.1em; color:#ff2e9b; margin-bottom:10px;'>💖 Đây là bí mật dành riêng cho Ngân 💖<br>"Tui thật sự rất quý Ngân… nhiều hơn Ngân nghĩ đó."</p>
-        <img src="secret_image.jpg"" style="max-width:300px; border-radius:20px; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+    <img src="secret_image.jpg" style="max-width:300px; border-radius:20px; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
   </div>
+</div>
 
-  <script>
-    document.getElementById('secretBox').onclick = function() {
-      let pass = prompt("Hãy nhập mật khẩu đi không biết là giận đó🌚🌚🌚");
-      if(pass === "20-11-2004") {
-        document.getElementById('secretImage').style.display = 'block';
-        alert("Bí mật mở rồi nè 💖");
-      } else {
-        alert("Sai mật khẩu rồi nha 🌚");
-      }
-    }
-  </script>
+<script>
+document.getElementById('secretBox').onclick=function(){
+  let pass=prompt("Hãy nhập mật khẩu đi không biết là giận đó🌚🌚🌚");
+  if(pass==="20-11-2004"){
+    document.getElementById('secretImage').style.display='block';
+    alert("Bí mật mở rồi nè 💖");
+  } else { alert("Sai mật khẩu rồi nha 🌚"); }
+}
+</script>
 
 </body>
 </html>
