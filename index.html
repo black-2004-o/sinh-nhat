@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>🎂 Chúc Mừng Sinh Nhật Nguyễn Thị Kim Ngân 🎉</title>
+
 <style>
   * { box-sizing: border-box; }
   body {
     touch-action: pan-y;
-    -webkit-user-select: none;
-    user-select: none;
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background: radial-gradient(circle at top, #ffd6e8, #fff8e6);
     overflow: hidden;
   }
+
   .page {
     position: absolute;
     top: 0; left: 0;
@@ -24,60 +24,53 @@
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity 1s ease, transform 1s ease;
+    transition: 1s ease;
+    padding: 15px;
     text-align: center;
-    padding: 20px;
     transform: translateY(20px);
   }
+
   .page.active {
     opacity: 1;
     transform: translateY(0);
     z-index: 2;
   }
-  .cake { font-size: 4em; animation: float 3s ease-in-out infinite; }
-  @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);} }
+
+  /* ẢNH tối ưu cho điện thoại */
+  img {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    border-radius: 22px;
+    box-shadow: 0 5px 22px rgba(0,0,0,0.15);
+    margin: 20px 0;
+    display: block;
+  }
+
+  .cake {
+    font-size: 4em;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
   h1 {
     color: #ff2e9b;
-    font-size: 2.2em;
+    font-size: 1.9em;
     margin-top: 10px;
     text-shadow: 0 0 15px #ff8ecf;
-    animation: glow 2s ease-in-out infinite alternate;
   }
-  @keyframes glow {
-    from { text-shadow: 0 0 15px #ff9bd4; }
-    to { text-shadow: 0 0 30px #ffc1e3; }
-  }
+
   p {
     color: #444;
-    font-size: 1.15em;
-    line-height: 1.8;
-    max-width: 90%;
-  }
-  .btn {
-    background: linear-gradient(45deg, #ff72c6, #ff4da6);
-    color: white;
-    border: none;
-    border-radius: 35px;
-    padding: 12px 26px;
     font-size: 1.1em;
-    cursor: pointer;
-    margin-top: 25px;
-    box-shadow: 0 4px 15px rgba(255, 77, 166, 0.4);
-    transition: 0.3s;
+    line-height: 1.7;
+    max-width: 95%;
   }
-  .btn:hover { transform: scale(1.07); box-shadow: 0 6px 20px rgba(255, 77, 166, 0.55); }
 
-  img {
-    width: 86%;
-    max-width: 380px;
-    border-radius: 25px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.12);
-    margin: 20px 0;
-    transition: transform 0.4s;
-  }
-  img:hover { transform: scale(1.03); }
-
-  /* Hiệu ứng pháo hoa */
+  /* Firework */
   .firework {
     position: fixed;
     width: 4px;
@@ -91,52 +84,16 @@
     to { transform: scale(3); opacity: 0; }
   }
 
-  /* Icon dễ thương bay bay */
-  .icon {
-    position: fixed;
-    animation: fly 7s linear infinite;
-    opacity: 0.85;
-  }
-  @keyframes fly {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-105vh) rotate(720deg); opacity: 0; }
-  }
-  /* Thêm nền trái tim nhỏ bay nhẹ */
-  .heart-bg {
-    position: fixed;
-    pointer-events: none;
-    animation: heartFloat 10s linear infinite;
-    opacity: 0.5;
-  }
-  @keyframes heartFloat {
-    0% { transform: translateY(0) scale(0.8); }
-    100% { transform: translateY(-120vh) scale(1.4); }
-  }
-  /* Hiệu ứng fade-in trang khi mở website */
-  body.loaded .page.active {
-    animation: introFade 1.2s ease forwards;
-  }
-  @keyframes introFade {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  /* Hiệu ứng trái tim dễ thương bay nhẹ */
+  /* Hearts */
   .hearts {
     position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     pointer-events: none;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     overflow: hidden;
     z-index: 5;
   }
   .heart {
-    position: absolute;
-    bottom: -20px;
-    font-size: 14px; /* nhỏ hơn cho mobile */
-    opacity: 0.7;
-    animation: floatUp 4.5s linear infinite; /* chậm nhẹ cho đỡ rối */
     position: absolute;
     bottom: -20px;
     font-size: 18px;
@@ -148,58 +105,65 @@
     50% { opacity: 1; }
     100% { transform: translateY(-120vh) scale(1.6); opacity: 0; }
   }
+
 </style>
 </head>
+
 <body>
+
+<!-- PAGE 1 -->
 <div class="page active" id="page1">
   <div class="cake">🎂💖</div>
   <h1>Chúc Mừng Sinh Nhật<br>Nguyễn Thị Kim Ngân 🎉</h1>
   <img src="z7141954347992_01fc0112130cdebda054ebd0d8491e7b.jpg" alt="Birthday">
-  
 </div>
 
+<!-- PAGE 2 -->
 <div class="page" id="page2">
   <h1>🌸 Lời Chúc Đầu Tiên 🌸</h1>
   <p>
-    Chúc Ngân một ngày sinh nhật thật ngọt ngào, tràn đầy yêu thương 💕<br>
-    Mong rằng mọi điều tuyệt vời nhất sẽ đến với Ngân trong tuổi mới 🌈<br>
-    Nụ cười luôn rạng rỡ như ánh mặt trời nhé ☀️💖
+    Chúc Ngân một ngày sinh nhật thật ngọt ngào và đầy yêu thương 💕<br>
+    Mọi điều tốt đẹp nhất sẽ đến với Ngân trong tuổi mới 🌈<br>
+    Luôn rạng rỡ và hạnh phúc nhé ☀️💖
   </p>
   <img src="z7141954342367_af03f507a0077d6d43718aeb398af511.jpg" alt="Slide 2">
-  
 </div>
 
+<!-- PAGE 3 -->
 <div class="page" id="page3">
   <h1>🌷 Lời Chúc Tiếp Theo 🌷</h1>
   <p>
-    Chúc Ngân luôn tự tin, mạnh mẽ và hạnh phúc trên hành trình phía trước 🌈<br>
-    Dù cuộc sống có thế nào, hãy nhớ rằng Ngân là cô gái đặc biệt và đáng yêu nhất 🎀<br>
-    Chúc tuổi mới của Ngân thật nhiều niềm vui và may mắn nhé 💫
+    Chúc Ngân luôn mạnh mẽ, tự tin và hạnh phúc trên hành trình của mình 🌈<br>
+    Ngân là cô gái đặc biệt và đáng yêu nhất 🎀<br>
+    Chúc tuổi mới thật nhiều niềm vui và may mắn 💫
   </p>
   <img src="z7203904822246_913fa2275d4ab23eae66ad52ce50b185.jpg" alt="Slide 3">
-  
 </div>
 
+<!-- PAGE 4 -->
 <div class="page" id="page4">
   <div class="cake">🎂🎉💖</div>
   <h1>🎁 Happy Birthday Nguyễn Thị Kim Ngân 🎁</h1>
   <p>
-    Chúc Ngân luôn nhận được những điều xinh đẹp và tuyệt vời nhất 💝<br>
-    Cảm ơn vì sự dễ thương, hiền lành và niềm vui mà Ngân mang đến 🌸<br>
-    Mãi luôn rạng rỡ, hạnh phúc và thành công nhé 💕
+    Chúc Ngân nhận được những điều tuyệt vời và dễ thương nhất 💝<br>
+    Cảm ơn vì sự hiền lành và niềm vui mà Ngân mang lại 🌸<br>
+    Chúc Ngân luôn rạng rỡ, thành công và hạnh phúc 💕
   </p>
-  
 </div>
+
+<div class="hearts" id="heart-container"></div>
 
 <script>
 let current = 1;
+
 function nextPage(num) {
-  document.getElementById('page' + current).classList.remove('active');
-  const next = document.getElementById('page' + num);
-  next.classList.add('active');
+  document.getElementById("page" + current).classList.remove("active");
+  const next = document.getElementById("page" + num);
+  next.classList.add("active");
   current = num;
 
-  for (let i = 0; i < 25; i++) {
+  // Fireworks
+  for (let i = 0; i < 18; i++) {
     const f = document.createElement('div');
     f.className = 'firework';
     f.style.left = Math.random() * 100 + 'vw';
@@ -210,62 +174,28 @@ function nextPage(num) {
   }
 }
 
-const cuteIcons = ['💖','✨','🌸','🎀','💫','🦋','⭐','🎈','💗','💝','💕','🌟','🍰','🧸','🐰','🌈'];
-// Tạo trái tim bay tự động (tối ưu cho mobile)
-    setInterval(() => {
-      const container = document.getElementById('heart-container');
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.textContent = '💖';
-
-      // Tối ưu mobile: tránh quá nhiều trái tim
-      if (container.childElementCount > 10) return;
-
-      heart.style.left = Math.random() * 90 + 'vw';
-      heart.style.animationDuration = 4 + Math.random() * 2 + 's';
-      heart.style.fontSize = (12 + Math.random() * 10) + 'px'; // phù hợp màn hình nhỏ
-      container.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }, 1000);(() => {
-  const i = document.createElement('div');
-  i.className = 'icon';
-  i.textContent = cuteIcons[Math.floor(Math.random() * cuteIcons.length)];
-  i.style.left = Math.random() * 100 + 'vw';
-  i.style.bottom = '-8vh';
-  i.style.fontSize = Math.random() * 25 + 22 + 'px';
-  i.style.animationDuration = (Math.random() * 4 + 5) + 's';
-  document.body.appendChild(i);
-  setTimeout(() => i.remove(), 9000);
-}, 600);
-  // Tự động chuyển trang mỗi 5 giây
 setInterval(() => {
   let next = current + 1;
   if (next > 4) next = 1;
   nextPage(next);
 }, 5000);
 
-// Hiệu ứng mở trang
-window.onload = () => {
-  document.body.classList.add('loaded');
-};
+// Hearts animation
+setInterval(() => {
+  const container = document.getElementById('heart-container');
+  if (container.childElementCount > 12) return; // tránh lag mobile
 
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.textContent = '💖';
+  heart.style.left = Math.random() * 90 + 'vw';
+  heart.style.fontSize = (16 + Math.random() * 12) + 'px';
+  heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+
+  container.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 800);
 </script>
-  <!-- Hiệu ứng trái tim dễ thương -->
-  <div class="hearts" id="heart-container"></div>
 
-  <script>
-    // Tạo trái tim bay tự động
-    setInterval(() => {
-      const container = document.getElementById('heart-container');
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.textContent = '💖';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = 3 + Math.random() * 3 + 's';
-      heart.style.fontSize = (16 + Math.random() * 14) + 'px';
-      container.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }, 800);
-  </script>
 </body>
 </html>
