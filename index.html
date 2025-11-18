@@ -244,5 +244,28 @@ function showSecret() {
 }
 </script>
 
+  <!-- NÚT BÍ MẬT Ở CUỐI -->
+  <div id="secretBox" style="margin-top:20px; cursor:pointer; font-size:1.2em; color:#ff2e9b; text-decoration:underline;">
+    🔒 Nhấn để xem bí mật
+  </div>
+
+  <!-- ẢNH BÍ MẬT (ẨN) -->
+  <div id="secretImage" style="display:none; margin-top:15px; text-align:center;">
+    <p style='font-size:1.1em; color:#ff2e9b; margin-bottom:10px;'>💖 Đây là bí mật dành riêng cho Ngân 💖<br>"Tui thật sự rất quý Ngân… nhiều hơn Ngân nghĩ đó."</p>
+        <img src="secret_image.jpg"" style="max-width:300px; border-radius:20px; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+  </div>
+
+  <script>
+    document.getElementById('secretBox').onclick = function() {
+      let pass = prompt("Hãy nhập mật khẩu đi không biết là giận đó🌚🌚🌚");
+      if(pass === "20-11-2004") {
+        document.getElementById('secretImage').style.display = 'block';
+        alert("Bí mật mở rồi nè 💖");
+      } else {
+        alert("Sai mật khẩu rồi nha 🌚");
+      }
+    }
+  </script>
+
 </body>
 </html>
